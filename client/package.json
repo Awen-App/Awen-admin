@@ -9,8 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "13.4.5",
+    "@firebase/auth": "^0.23.2",
+    "encoding": "^0.1.13",
+    "firebase": "^9.22.2",
+    "next": "^13.4.5",
+    "node-fetch": "^3.3.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-router-dom": "^6.12.1"
   }
 }

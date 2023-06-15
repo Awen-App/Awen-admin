@@ -1,0 +1,43 @@
+.h1{
+  transform: translate(517px, 10px);
+  color: rgb(248, 54, 5);
+}
+
+.loginContainer {
+  width: 300px; /* Adjust the width as needed */
+  margin:  auto; /* Center horizontally */
+  padding: 20px;
+  background-color:grey;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); /* Add a subtle box shadow */
+  border-radius: 4px; /* Add rounded corners */
+  margin-top: 200px;
+
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginForm .formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.loginForm label {
+  margin-bottom: 5px;
+}
+
+.loginForm input[type='email'],
+.loginForm input[type='password'] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.loginButton {
+  padding: 8px 16px;
+ background-color:"orange";
+}

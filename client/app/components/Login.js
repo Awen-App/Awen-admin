@@ -3,7 +3,8 @@ import { useState } from 'react';
 import styles from './Login.module.css';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../fireBaseConfig';
-
+import Image from 'next/image';
+import logo from '../../public/logo.png'
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +28,10 @@ const Login = () => {
 
   return (
     <div className={styles.Container} >
-      <h1>Welcome to AWEN Dashboard</h1>
+      <div className={styles.logoContainer}>
+        <Image className={styles.logo} src={logo} alt='...'/>
+      </div>
+      
     <div className={styles.loginContainer}>
       <form onSubmit={handleSubmit} className={styles.loginForm}>
         <div className={styles.formGroup}>

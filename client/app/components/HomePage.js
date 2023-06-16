@@ -1,7 +1,9 @@
 
 "use client"
 import { useState, useEffect } from 'react';
-
+import styles from'./HomePage.module.css'
+import Image from 'next/image';
+import logo from '../../public/logo.png'
 const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = ['https://c1.wallpaperflare.com/preview/648/593/286/caucasian-charity-community-donation-thumbnail.jpg',
@@ -33,9 +35,13 @@ const HomePage = () => {
         justifyContent: 'center',
       }}
     >
+       
       <div>
-        <button style={{ marginRight: '10px' }}>Donor</button>
-        <button>Organization</button>
+      <div className={styles.logoContainer}>
+        <Image className={styles.logo} src={logo} alt='...'/>
+      </div>
+        <button className={styles.button} >Donor</button>
+        <button className={styles.button} >Organization</button>
       </div>
     </div>
   );

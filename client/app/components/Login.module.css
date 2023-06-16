@@ -1,18 +1,18 @@
-.h1{
+.h1 {
   transform: translate(517px, 10px);
   color: rgb(248, 54, 5);
 }
 
 .loginContainer {
-  width: 300px; /* Adjust the width as needed */
-  margin:  auto; /* Center horizontally */
+  width: 300px;
+  margin: auto;
   padding: 20px;
-  background-color:grey;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); /* Add a subtle box shadow */
-  border-radius: 4px; /* Add rounded corners */
-  margin-top: 200px;
-
+  background-color: grey;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  border-radius: 4px;
+  margin-top: 100px;
 }
+
 .loginForm {
   display: flex;
   flex-direction: column;
@@ -39,5 +39,20 @@
 
 .loginButton {
   padding: 8px 16px;
- background-color:"orange";
+  border-radius: 8px;
+  background-color: transparent;
+  border-color: white;
+  color: white;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.logo {
+  width: 400px;
+  height: 175px;
+  transform: translate(-5px, 48px);
 }

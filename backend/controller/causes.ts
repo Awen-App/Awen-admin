@@ -177,6 +177,8 @@ const getLatest=async (req:Request,res:Response) =>{
     }
 }
 
+
+
 export default{
     getAllCauses,
     getOneCause,
@@ -194,4 +196,4 @@ export default{
     getLimitToSlideShow,
     getAllOfOneOrganization,
     getLatest
-}
+    }

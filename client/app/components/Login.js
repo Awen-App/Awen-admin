@@ -4,8 +4,10 @@ import styles from './Login.module.css';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../fireBaseConfig';
 import Image from 'next/image';
-import logo from '../../public/logo.png'
+import logo from '../../public/logo.png';
+import { useRouter } from 'next/navigation';
 const Login = () => {
+  const route=useRouter()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [tokenResponse, setTokenResponse] = useState({});
@@ -17,11 +19,14 @@ const Login = () => {
       .then((userCredential) => {
         const { user } = userCredential;
         setTokenResponse(user);
+
         console.log(tokenResponse);
+        route.push('/home')
       })
       .catch((error) => {
         console.log(error);
       });
+
   };
 
   console.log(tokenResponse);

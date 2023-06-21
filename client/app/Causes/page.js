@@ -6,22 +6,22 @@ const Causes = () => {
   const [acceptedCauses, setAcceptedCauses] = useState([]);
   const [nonAcceptedCauses, setNonAcceptedCauses] = useState([]);
 
-  useEffect(() => {
-    fetchCauses();
-  }, []);
-
+  
   const fetchCauses = async () => {
     try {
-      const acceptedResponse = await axios.get('http://localhost:3001/accepted');
+      const acceptedResponse = await axios.get('http://localhost:3001/causeaccepted');
       setAcceptedCauses(acceptedResponse.data);
-
-      const nonAcceptedResponse = await axios.get('http://localhost:3001/nonaccepted');
+      
+      const nonAcceptedResponse = await axios.get('http://localhost:3001/causenonaccepted');
       setNonAcceptedCauses(nonAcceptedResponse.data);
     } catch (error) {
       console.log('Error fetching causes:', error);
     }
   };
-
+  
+  useEffect(() => {
+    fetchCauses();
+  }, []);
   return (
     <div>
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>

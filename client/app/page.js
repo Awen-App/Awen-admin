@@ -1,13 +1,13 @@
 
 import React from 'react';
 import Login from './components/Login';
-import HomePage from './components/HomePage';
-import Organization from './components/Organization';
-import Causes from './components/Causes';
+import HomePage from './home/page';
+import Organization from './Organization/page';
+import Causes from './Causes/page';
 const LoginPage = () => {
   return (
     <div>
-     <Causes />
+     <Login />
       
     </div>
   );

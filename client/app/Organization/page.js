@@ -23,7 +23,7 @@ const Organization = () => {
   };
 
   const handleShowCauses = (orgId) => {
-    router.push(`/causes/${orgId}`);
+    router.push(`/Causes/${orgId}`);
   };
 
   return (
@@ -59,7 +59,7 @@ const Organization = () => {
               <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>{org.orgEmail}</td>
               <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>{org.rip}</td>
               <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>
-                <button onClick={() => handleShowCauses(org.id)}>Show Causes</button>
+                <button onClick={() => handleShowCauses(org.orgId)}>Show Causes</button>
               </td>
             </tr>
           ))}

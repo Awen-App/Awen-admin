@@ -1,19 +1,19 @@
 "use client"
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'next/navigation'
+
 
 const Causes = () => {
   const [acceptedCauses, setAcceptedCauses] = useState([]);
-  const [nonAcceptedCauses, setNonAcceptedCauses] = useState([]);
-
+  const params = useParams()
+  console.log(params.orgId)
   
   const fetchCauses = async () => {
     try {
-      const acceptedResponse = await axios.get('http://localhost:3001/causeaccepted');
+      const acceptedResponse = await axios.get(`http://localhost:3001/causes/${params.orgId}`);
       setAcceptedCauses(acceptedResponse.data);
-      
-      const nonAcceptedResponse = await axios.get('http://localhost:3001/causenonaccepted');
-      setNonAcceptedCauses(nonAcceptedResponse.data);
+      console.log(acceptedResponse.data)
     } catch (error) {
       console.log('Error fetching causes:', error);
     }
@@ -28,25 +28,24 @@ const Causes = () => {
         <thead>
           <tr>
             <th style={styles.header}>Accepted Causes</th>
-            <th style={styles.header}>Nonaccepted Causes</th>
           </tr>
         </thead>
         <tbody>
           {acceptedCauses.map((cause, i) => (
             <tr key={i}>
-              <td style={styles.cell}>{cause.name}</td>
-              <td style={styles.cell}></td>
+              <td style={styles.cell}>{cause.title}</td>
+              <td style={styles.cell}><img
+                  src={cause.causeImg
+                  }
+                  alt=""
+                  style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '0.5rem' }}
+                /></td>
+                <td style={styles.cell}>{cause.causeDescription}</td>
             </tr>
           ))}
           <tr>
             <td style={styles.row} colSpan="2"></td>
           </tr>
-          {nonAcceptedCauses.map((cause, i) => (
-            <tr key={i}>
-              <td style={styles.cell}></td>
-              <td style={styles.cell}>{cause.name}</td>
-            </tr>
-          ))}
         </tbody>
       </table>
     </div>

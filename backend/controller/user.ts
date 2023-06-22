@@ -39,10 +39,12 @@ const checkUser = async (req: Request, res: Response): Promise<void> => {
       res.json(err);
     }
   };
+  
 
   
 export default {
     getAllUsers,
     addUser,
-    checkUser
+    checkUser,
+    
 }

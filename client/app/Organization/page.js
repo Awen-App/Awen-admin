@@ -1,8 +1,9 @@
 "use client"
-
-import { useEffect, useState } from 'react';
+import React ,{ useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import logo from '../../public/logo.png';
 
 const Organization = () => {
   const [organizations, setOrganizations] = useState([]);
@@ -26,40 +27,45 @@ const Organization = () => {
   };
 
   return (
-    <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-      <thead>
-        <tr>
-          <th>Organization Image</th>
-          <th>Organization Name</th>
-          <th>Organization Description</th>
-          <th>Category</th>
-          <th>Email</th>
-          <th>RIB</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {organizations.map((org, i) => (
-          <tr key={i}>
-            <td>
-              <img
-                src={org.orgImg}
-                alt={org.orgName}
-                style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '0.5rem' }}
-              />
-            </td>
-            <td>{org.orgName}</td>
-            <td>{org.description}</td>
-            <td>{org.category}</td>
-            <td>{org.orgEmail}</td>
-            <td>{org.rip}</td>
-            <td>
-              <button onClick={() => handleShowCauses(org.id)}>Show Causes</button>
-            </td>
+    <div>
+      <div style={{ display: 'flex', marginBottom: '10px', justifyContent: 'center' }}>
+        <Image style={{ width: '400px', height: '175px' }} src={logo} alt="..." />
+      </div>
+      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+        <thead>
+          <tr>
+            <th style={{borderBlockEnd:"solid",padding:"30px",borderColor:"#ddd",borderWidth:"5px"}}>Organization Image</th>
+            <th style={{borderBlockEnd:"solid",padding:"30px",borderColor:"#ddd",borderWidth:"5px"}}>Organization Name</th>
+            <th style={{borderBlockEnd:"solid",padding:"30px",borderColor:"#ddd",borderWidth:"5px"}}>Organization Description</th>
+            <th style={{borderBlockEnd:"solid",padding:"30px",borderColor:"#ddd",borderWidth:"5px"}}>Category</th>
+            <th style={{borderBlockEnd:"solid",padding:"30px",borderColor:"#ddd",borderWidth:"5px"}}>Email</th>
+            <th style={{borderBlockEnd:"solid",padding:"30px",borderColor:"#ddd",borderWidth:"5px"}}>RIB</th>
+            <th style={{borderBlockEnd:"solid",padding:"30px",borderColor:"#ddd",borderWidth:"5px"}}>Actions</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {organizations.map((org, i) => (
+            <tr key={i} style={{borderBottom:"solid",borderColor:"#ddd",borderWidth:"3px"}}>
+              <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>
+                <img
+                  src={org.orgImg}
+                  alt={org.orgName}
+                  style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '0.5rem' }}
+                />
+              </td>
+              <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>{org.orgName}</td>
+              <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>{org.description}</td>
+              <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>{org.category}</td>
+              <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>{org.orgEmail}</td>
+              <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>{org.rip}</td>
+              <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>
+                <button onClick={() => handleShowCauses(org.id)}>Show Causes</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

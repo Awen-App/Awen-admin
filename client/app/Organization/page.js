@@ -31,7 +31,7 @@ const Organization = () => {
       <div style={{ display: 'flex', marginBottom: '10px', justifyContent: 'center' }}>
         <Image style={{ width: '400px', height: '175px' }} src={logo} alt="..." />
       </div>
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+      <table style={{ borderCollapse: 'collapse', width: '100%',textAlign: 'left', }}>
         <thead>
           <tr>
             <th style={{borderBlockEnd:"solid",padding:"30px",borderColor:"#ddd",borderWidth:"5px"}}>Organization Image</th>
@@ -46,7 +46,7 @@ const Organization = () => {
         <tbody>
           {organizations.map((org, i) => (
             <tr key={i} style={{borderBottom:"solid",borderColor:"#ddd",borderWidth:"3px"}}>
-              <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>
+              <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px"}}>
                 <img
                   src={org.orgImg}
                   alt={org.orgName}

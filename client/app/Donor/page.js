@@ -1,18 +1,27 @@
 "use client"
+import logo from '../../public/logo.png';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Image from 'next/image';
-import logo from '../../public/logo.png';
+
 const Donor = () => {
   const [data, setData] = useState(null);
+  const [userCount, setUserCount] = useState(0);
+  const [showUserCount, setShowUserCount] = useState(false);
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (data) {
+      setUserCount(data.length);
+    }
+  }, [data]);
+
   async function fetchData() {
     try {
-      const response = await axios.get('http://localhost:3001/users/');
+      const response = await axios.get('http://localhost:3001/users');
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -29,22 +38,30 @@ const Donor = () => {
     }
   };
 
-  
+  const toggleUserCount = () => {
+    setShowUserCount((prevShowUserCount) => !prevShowUserCount);
+  };
+
   return (
     <div style={styles.container}>
-         <div style={{ display: 'flex', marginBottom: '10px', justifyContent: 'center' }}>
-        <Image style={{ width: '400px', height: '175px' }} src={logo} alt="..." />
+      <div style={{ display: 'flex', marginBottom: '10px', justifyContent: 'center' }}>
+        <Image style={{ width: '400px', height: '175px' }} src={logo} alt="Logo" />
       </div>
       <h1 style={styles.header}>Donor List</h1>
+      <button style={styles.userCountButton} onClick={toggleUserCount}>
+        {showUserCount ? 'Hide User Count' : 'Show User Count'}
+      </button>
+      {showUserCount && (
+        <div style={styles.userCount}>
+          Total Users: {userCount}
+        </div>
+      )}
       {data ? (
         <ul style={styles.list}>
           {data.map((item) => (
             <li
               key={item.id}
-              style={{
-                ...styles.item,
-               
-              }}
+              style={styles.item}
             >
               <span style={styles.emailLabel}>email:</span> {item.email}
               <button
@@ -76,41 +93,57 @@ const styles = {
     marginBottom: '20px',
     color: '#333',
   },
-  list: {
-    listStyleType: 'none',
-    padding: '0',
-    margin: '0',
-    width: '100%',
-    maxWidth: '500px',
-  },
-  item: {
+  userCountButton: {
     marginBottom: '10px',
+    fontSize: '18px',
+    fontWeight: 'bold',
     padding: '10px',
+    background: '#f2f2f2',
     borderRadius: '5px',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    fontSize: '16px',
-    color: '#555',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    transition: 'background-color 0.3s ease',
-  },
-  emailLabel: {
-    fontWeight: 'bold',
-    marginRight: '5px',
-  },
-  deleteButton: {
-    padding: '5px 10px',
-    background: 'red',
-    color: 'white',
-    borderRadius: '4px',
-    border: 'none',
     cursor: 'pointer',
+    border: 'none',
+    outline: 'none',
   },
-  loading: {
-    fontStyle: 'italic',
-    color: '#888',
+  userCount: {
+    marginBottom: '10px',
+    fontSize: '18px',
+    fontWeight: 'bold',
   },
-};
-
+    list: {
+      listStyleType: 'none',
+      padding: '0',
+      margin: '0',
+      width: '100%',
+      maxWidth: '500px',
+    },
+    item: {
+      marginBottom: '10px',
+      padding: '10px',
+      borderRadius: '5px',
+      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+      fontSize: '16px',
+      color: '#555',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      transition: 'background-color 0.3s ease',
+    },
+    emailLabel: {
+      fontWeight: 'bold',
+      marginRight: '5px',
+    },
+    deleteButton: {
+      padding: '5px 10px',
+      background: 'red',
+      color: 'white',
+      borderRadius: '4px',
+      border: 'none',
+      cursor: 'pointer',
+    },
+    loading: {
+      fontStyle: 'italic',
+      color: '#888',
+    },
+  };
 export default Donor;

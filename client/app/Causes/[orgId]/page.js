@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'next/navigation'
-
+import logo from "../../../public/logo.png"
+import Image from 'next/image';
 
 const Causes = () => {
   const [acceptedCauses, setAcceptedCauses] = useState([]);
@@ -24,10 +25,15 @@ const Causes = () => {
   }, []);
   return (
     <div>
+      <div style={{ display: 'flex', marginBottom: '10px', justifyContent: 'center' }}>
+        <Image style={{ width: '400px', height: '175px' }} src={logo} alt="..." />
+      </div>
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
           <tr>
-            <th style={styles.header}>Accepted Causes</th>
+          <th style={{borderBlockEnd:"solid",padding:"30px",borderColor:"#ddd",borderWidth:"5px", textAlign: 'left'}}>Cause Name</th>
+          <th style={{borderBlockEnd:"solid",padding:"30px",borderColor:"#ddd",borderWidth:"5px", textAlign: 'left'}}>Organization Image</th>
+          <th style={{borderBlockEnd:"solid",padding:"30px",borderColor:"#ddd",borderWidth:"5px", textAlign: 'left'}}>Category</th>
           </tr>
         </thead>
         <tbody>
@@ -38,13 +44,13 @@ const Causes = () => {
                   src={cause.causeImg
                   }
                   alt=""
-                  style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '0.5rem' }}
+                  style={{ width: '200px', height: '120px', objectFit: 'cover', borderRadius: '30px' }}
                 /></td>
-                <td style={styles.cell}>{cause.causeDescription}</td>
+                <td style={styles.cell}>{cause.causeCategory}</td>
             </tr>
           ))}
           <tr>
-            <td style={styles.row} colSpan="2"></td>
+            <td style={styles.row} colSpan="4"></td>
           </tr>
         </tbody>
       </table>
@@ -66,6 +72,7 @@ const styles = {
   cell: {
     padding: '8px',
     verticalAlign: 'top',
+    textAlign: 'left',
   },
   listItem: {
     marginBottom: '8px',

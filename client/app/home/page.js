@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import styles from'./HomePage.module.css'
 import Image from 'next/image';
 import logo from '../../public/logo.png'
+import { useRouter } from 'next/navigation';
 const HomePage = () => {
+  const route=useRouter()
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = ['https://c1.wallpaperflare.com/preview/648/593/286/caucasian-charity-community-donation-thumbnail.jpg',
    'https://img.freepik.com/premium-photo/solidarity-compassion-charity-rescue-hands-man-woman-reaching-each-other-support-giving-helping-hand-hands-man-woman-blue-sky-background-black-white_293990-3286.jpg',
@@ -41,7 +43,7 @@ const HomePage = () => {
         <Image className={styles.logo} src={logo} alt='...'/>
       </div>
         <button className={styles.button} >Donor</button>
-        <button className={styles.button} >Organization</button>
+        <button className={styles.button} onClick={()=>route.push('/Organization')}>Organization</button>
       </div>
     </div>
   );

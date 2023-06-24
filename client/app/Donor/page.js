@@ -5,10 +5,10 @@ import Image from 'next/image';
 import logo from '../../public/logo.png';
 const Donor = () => {
   const [data, setData] = useState(null);
-
+  const[tracker,setTracker] = useState(false);
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [tracker]);
 
   async function fetchData() {
     try {
@@ -21,9 +21,9 @@ const Donor = () => {
 
   const handleDeleteEmail = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/users/${id}`);
-      const updatedData = data.filter((item) => item.id !== id);
-      setData(updatedData);
+      await axios.delete(`http://localhost:3001/deleteu/${id}`);
+      setTracker(!tracker)
+     console.log('sarhane');
     } catch (error) {
       console.error('Error deleting email:', error);
     }
@@ -49,7 +49,7 @@ const Donor = () => {
               <span style={styles.emailLabel}>email:</span> {item.email}
               <button
                 style={styles.deleteButton}
-                onClick={() => handleDeleteEmail(item.id)}
+                onClick={() => handleDeleteEmail(item.userId)}
               >
                 Delete
               </button>

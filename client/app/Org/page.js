@@ -6,6 +6,7 @@ import Image from 'next/image';
 import notif from '../../public/notif.png';
 import noNotif from '../../public/noNotif.png';
 import org from '../../public/Org.png';
+import cause from '../../public/causes.png';
 import useFetch from '@/useFetch';
 import logo from '../../public/logo.png'
 import './Org.css';
@@ -27,7 +28,7 @@ const Org = () => {
   console.log(organizations.length);
   return (
     <div>
-           <div style={{ display: 'flex', marginBottom: '10px', justifyContent: 'center' }}>
+           <div style={{ display: 'flex', marginBottom: '1px', justifyContent: 'center' }}>
             <Image style={{ width: '450px', height: '175px', }} src={logo} alt='...'/>
           </div>
         <div className="notification">
@@ -37,7 +38,7 @@ const Org = () => {
             <h4 className="notifnumber">{pending.length}</h4>
           </div>
         ) : (
-          <Image src={noNotif} style={{ height: '50px', width: '50px' }} />
+          <Image src={noNotif} style={{ height: '30px', width: '30px' }} />
         )}
       </div>
 
@@ -45,20 +46,35 @@ const Org = () => {
   <div class="container">
     <div class="number">{organizations.length}</div>
     <h1 class="title">Number Of Organizations</h1>
-    <button onClick={() => route.push('/Organization')}>
+    <button onClick={() => route.push('/Organization')} style={{ backgroundColor: "#ff6600",
+    color: "#fff",
+    border: "none",
+    padding: "10px" ,
+    borderRadius: "4px",
+    fontSize: "16px"}}>
         See All Organizations
       </button>
   </div>
 
   <div class="container">
     <div class="number">{causes.length}</div>
-    <h1 class="title">ANumber Of Causes</h1>
-    <button onClick={() => route.push('/AllCauses')}>
+    <h1 class="title">Number Of Causes</h1>
+    <button onClick={() => route.push('/AllCauses')} style={{ backgroundColor: "#ff6600",
+    color: "#fff",
+    border: "none",
+    padding: "10px" ,
+    borderRadius: "4px",
+    fontSize: "16px",
+    width:200}}>
         See All Causes
       </button>
   </div>
 </div>
-<Image src={org} style={{ height: '400px', width: '550px' , marginLeft:200 , marginTop:50}} />
+<div>
+<Image src={org} style={{ height: '300px', width: '400px' , marginLeft:200 , marginTop:50}} />
+<Image src={cause} style={{ height: '300px', width: '400px' , marginLeft:250 , marginTop:50}} />
+</div>
+
       
     </div>
   );

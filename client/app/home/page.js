@@ -43,7 +43,7 @@ const HomePage = () => {
         <Image className={styles.logo} src={logo} alt='...'/>
       </div>
         <button className={styles.button} onClick={()=>route.push('/Donor')} >Donor</button>
-        <button className={styles.button} onClick={()=>route.push('/Organization')}>Organization</button>
+        <button className={styles.button} onClick={()=>route.push('/Org')}>Organization</button>
       </div>
     </div>
   );

@@ -4,11 +4,26 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import useFetch from '@/useFetch';
 import logo from '../../public/logo.png'
+import axios from 'axios';
 const Pending = ()=>{
+  const route = useRouter()
+  const [count,setCount] = useState(false)
      const { data: pending, error } = useFetch(
     'http://localhost:3001/causenonaccepted',
       []
+    
   );
+  const aprove = (id)=>{
+        axios.put(`http://localhost:3001/acceptcause/${id}`)
+        .then(()=>{
+          setCount(!count)
+         if(pending.length===0){
+          route.push("Org")
+         }
+        })
+        .catch(error=>{console.error(error);});
+  }
+  useEffect(()=>{},[count])
   return (
     <div>
         <div style={{ display: 'flex', marginBottom: '10px', justifyContent: 'center' }}>
@@ -36,7 +51,7 @@ const Pending = ()=>{
                   style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '0.5rem' }}
                 /></td>
                 <td style={styles.cell}>{cause.causeDescription}</td>
-                <td style={styles.btn}><button onClick={() => handleShowCauses(org.orgId)}>Approve</button></td>
+                <td style={styles.btn}><button onClick={() => aprove(cause.causeId)}>Approve</button></td>
             </tr>
           ))}
           <tr>

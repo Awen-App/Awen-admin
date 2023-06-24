@@ -39,12 +39,25 @@ const checkUser = async (req: Request, res: Response): Promise<void> => {
       res.json(err);
     }
   };
-  
+  const deleteUser = async (req: Request, res: Response): Promise<void> => {
+    try {
+    const deleted = await prisma.user.delete({
+      where: 
+      {
+        userId: req.params.id
+      },
+    })
+    res.json(deleted)
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+  }
 
   
 export default {
     getAllUsers,
     addUser,
     checkUser,
-    
+    deleteUser
 }

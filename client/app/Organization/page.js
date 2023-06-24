@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import logo from '../../public/logo.png';
-
+// import styles from "./Organization.module.css"
 const Organization = () => {
   const [organizations, setOrganizations] = useState([]);
   const router = useRouter();
@@ -59,7 +59,12 @@ const Organization = () => {
               <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>{org.orgEmail}</td>
               <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>{org.rip}</td>
               <td style={{borderRight:"solid",borderColor:"#ddd",borderWidth:"3px",textAlign:"center"}}>
-                <button onClick={() => handleShowCauses(org.orgId)}>Show Causes</button>
+                <button onClick={() => handleShowCauses(org.orgId)} style={{ backgroundColor: "#ff6600",
+    color: "#fff",
+    border: "none",
+    padding: "10px" ,
+    borderRadius: "4px",
+    fontSize: "16px"}}>Show Causes</button>
               </td>
             </tr>
           ))}

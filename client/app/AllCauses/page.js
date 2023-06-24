@@ -4,11 +4,24 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import useFetch from '@/useFetch';
 import logo from '../../public/logo.png'
+import axios from 'axios'
 const AllCauses=()=>{
-    const { data: pending, error } = useFetch(
-        'http://localhost:3001/getcauses',
-          []
-      );
+  const [pending,setPending]=useState([])
+  const [tracker,setTracker] = useState(true)
+    const fetch=()=>{
+        axios.get('http://localhost:3001/getcauses')
+          .then(response => {setPending(response.data)
+          setTracker(!tracker)})
+          .catch(error => console.log(error))
+    }
+      const deleteCauses=(id)=>{
+       axios.delete(`http://localhost:3001/deletecause/${id}`)
+       .then(()=>console.log("Success"))
+       .catch((error)=>console.log(error))
+      }
+      useEffect(()=>{
+        fetch();
+      },[tracker]);
       return (
         <div>
             <div style={{ display: 'flex', marginBottom: '10px', justifyContent: 'center' }}>
@@ -17,7 +30,7 @@ const AllCauses=()=>{
           <table style={{ borderCollapse: 'collapse', width: '100%' }}>
             <thead>
               <tr>
-                <th style={styles.header } >Pending Causes</th>
+                <th style={styles.header } >All Causes</th>
                 <th style={styles.header } ></th>
                 <th style={styles.header } ></th>
                 <th style={styles.header } ></th>
@@ -33,10 +46,15 @@ const AllCauses=()=>{
                       src={cause.causeImg
                       }
                       alt=""
-                      style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '0.5rem' }}
+                      style={{ width: '200px', height: '120px', objectFit: 'cover', borderRadius: '30px' }}
                     /></td>
                     <td style={styles.cell}>{cause.causeDescription}</td>
-                    
+                    <td style={styles.cell}><button onClick={()=>deleteCauses(cause.causeId)} style={{ backgroundColor: "#ad1717",
+    color: "#fff",
+    border: "none",
+    padding: "10px" ,
+    borderRadius: "4px",
+    fontSize: "16px"}}>Delete</button></td>
                 </tr>
               ))}
               <tr>

@@ -105,6 +105,7 @@ const updateImg=async (req:Request,res:Response) => {
 // this function deletes one cause 
 const deleteCause=async (req:Request,res:Response)=>{
     try {
+        console.log(req.params.id)
         const deleted = await cause.delete({where:{causeId:req.params.id}})
         res.status(200).send("deleted")
     } catch (error) {
